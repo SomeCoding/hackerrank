@@ -1,29 +1,32 @@
 import java.util.*;
+
 public class Solution {
+    
+    public static long sumFib (long n){
+        
+        long sum = 10;
+        long[] fVal = {5, 8};
+        long fValLast;
 
-    static long calculate (long n){
+        while (true) {
 
-        long nOf3 = (n-1)/3;
-        long sumOf3 = 3*nOf3*(nOf3+1)/2;
+            fValLast = fVal[0] + fVal[1];
+            fVal[0] = fVal[1];
+            fVal[1] = fValLast;
 
-        long nOf5 = (n-1)/5;
-        long sumOf5 = 5*nOf5*(nOf5+1)/2;
+            if (fValLast >= n) break;
 
-        long nOf15 = (n-1)/15;
-        long sumOf15 = 15*nOf15*(nOf15+1)/2;
-
-        long result = (sumOf3 + sumOf5 - sumOf15);
-
-        return result;
-    }
+            if (fValLast%2 == 0) sum += fValLast;
+        }
+        return sum;
+     }
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int t = in.nextInt();
         for(int i = 0; i < t; i++){
             long n = in.nextLong();
-            System.out.println(calculate(n));
+            System.out.println(sumFib(n));
         }
-        in.close();
     }
 }
